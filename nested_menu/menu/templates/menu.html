@@ -1,0 +1,10 @@
+{% load menu_tags %}
+{% load static %}
+{% if menu_tree.0.menu %}
+<p>{{menu_tree.0.menu}}</p>
+{% endif %}
+<ul>
+    {% autoescape off %}
+    {% render_menu menu_tree %}
+    {% endautoescape %}
+</ul>
