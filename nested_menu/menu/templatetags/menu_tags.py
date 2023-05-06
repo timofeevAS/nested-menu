@@ -88,11 +88,14 @@ def draw_menu(context, menu_name):
 @register.simple_tag(takes_context=True)
 def render_menu(context, menu_tree, current_item=None):
     result = ''
+
     for item in menu_tree:
         if item['parent'] == current_item and item['active'] == True:
             result += f'<li><a href="{item["url"]}" {"class=menuitem" if item["active"] else ""}>{item["name"]}</a>'
+            # обрабатываем вложенные меню
             sub_menu = render_menu(context, menu_tree, item['id'])
             if sub_menu:
                 result += f'<ul>{sub_menu}</ul>'
             result += '</li>'
+
     return result
