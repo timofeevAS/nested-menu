@@ -55,15 +55,20 @@ def draw_menu(context, menu_name):
 
 
 
-        print(current_url, parent_last_id)
-        print(last_active_id)
+    print(current_url, parent_last_id)
+    print(last_active_id)
+
+    for item in tree:
+        if item['parent'] == root_id or item['parent'] == parent_last_id:
+            item['active'] = True
+        else:
+            item['active'] = False
 
 
     for item in tree:
         if  item['url'] == current_url or \
             item['parent'] is None or \
-            item['parent'] == last_active_id or \
-            item['parent'] == root_id:
+            item['parent'] == last_active_id:
             item['active'] = True
             parent_id = item['parent']
             while parent_id is not None:
